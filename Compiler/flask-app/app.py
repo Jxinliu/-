@@ -2,8 +2,8 @@
 
 
 from flask import Flask
-from flask import request
-from flask import Response
+from flask import request,make_response
+from flask import Response,jsonify
 import json
 import Compilers
 
@@ -25,9 +25,8 @@ def hello_world():
 def run():
     if request.method == 'POST' and request.form['code']:
         code = request.form['code']
-        print(code)
         jsondata = Compilers.main(code)
-        return Response_headers(str(jsondata))
+        return make_response(jsonify(jsondata))
 
 
 @app.errorhandler(403)
@@ -73,4 +72,4 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0',port = 5000,debug=True)

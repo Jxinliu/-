@@ -29,7 +29,6 @@ def write_file(pyname, code):
     fpath = os.path.join(TempFile, '%s.py' % pyname)
     with open(fpath, 'w', encoding='utf-8') as f:
         f.write(code)
-    print('file path: %s' % fpath)
     return fpath
 
 
